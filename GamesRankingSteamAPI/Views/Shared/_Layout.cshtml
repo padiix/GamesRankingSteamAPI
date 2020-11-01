@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
+<body style="background-color:#364859">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <partial name="_navbar"/>
+        <!--<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Games Rank</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -28,16 +29,17 @@
                 </div>
             </div>
         </nav>
+            -->
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-4">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer bg-dark text-muted">
         <div class="container">
-            &copy; 2020 - Games Rank<!--<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>-->
+            <span style="color: #FFFFFF80">&copy; 2020 - Games Rank</span><!--<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>-->
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
