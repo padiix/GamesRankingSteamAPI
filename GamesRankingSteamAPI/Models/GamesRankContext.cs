@@ -5,8 +5,8 @@ namespace mysqlefcore
 {
     public class GamesRankContext : DbContext
     {
-        public DbSet<Games> Games { get; set; }
-        public DbSet<Genres> Genres { get; set; }
+        public DbSet<Gry> Games { get; set; }
+        public DbSet<RodzajeGier> Genres { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -17,19 +17,19 @@ namespace mysqlefcore
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Games>(entity =>
+            modelBuilder.Entity<Gry>(entity =>
             {
-                entity.HasKey(e => e.ID);
-                entity.Property(e => e.Title).IsRequired();
+                entity.HasKey(e => e.GraID);
+                entity.Property(e => e.Tytul).IsRequired();
             });
 
-            modelBuilder.Entity<Genres>(entity =>
+            modelBuilder.Entity<RodzajeGier>(entity =>
             {
-                entity.HasKey(e => e.ID);
-                entity.Property(e => e.Name).IsRequired();
+                entity.HasKey(e => e.RodzajeGierID);
+                entity.Property(e => e.NazwaRodzaju).IsRequired();
             });
 
-            modelBuilder.Entity<GameInfo>(entity =>
+            modelBuilder.Entity<InformacjeOGrze>(entity =>
             {
                 entity.HasMany(d => d.Collection_Games)
                       .WithOne(p => p.FK_GamesIDs);
