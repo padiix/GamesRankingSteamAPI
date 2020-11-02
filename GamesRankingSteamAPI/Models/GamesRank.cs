@@ -6,42 +6,41 @@ using System.Threading.Tasks;
 
 namespace mysqlefcore
 {
-    public class Games
+    public class Gry
     {
-        public Games(){}
+        public Gry(){}
 
-        public int ID { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public int GraID { get; set; }
+        public string Tytul { get; set; }
+        public string Opis { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime ReleaseDate { get; set; }
-        public decimal Price { get; set; }
-        public string wwwaddress { get; set; }
+        public DateTime DataWydania { get; set; }
+        public decimal Cena { get; set; }
+        public string AdresInternetowy { get; set; }
         public int PEGI { get; set; }
-        public int Popularity_Points { get; set; }
-
-        public GameInfo FK_GamesIDs { get; set; }
+        public int PktPopularnosci { get; set; }
     }
 
-    public class Genres
+    public class RodzajeGier
     {
-        public Genres(){}
+        public RodzajeGier(){}
 
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-
-        public GameInfo FK_GenresIDs { get; set; }
+        public int RodzajeGierID { get; set; }
+        public string NazwaRodzaju { get; set; }
+        public string Opis { get; set; }
     }
 
-    public class GameInfo {
-        public GameInfo()
+    public class InformacjeOGrze {
+        public InformacjeOGrze(){}
+
+        public virtual Gry Gra { get; set; }
+        public virtual RodzajeGier RodzajGry { get; set; }
+
+        public void LinkGameAndGenre(Gry Gra, RodzajeGier Rodzaj)
         {
-            this.Collection_Games = new HashSet<Games>();
-            this.Collection_Genres = new HashSet<Genres>();
+            this.Gra = Gra;
+            this.RodzajGry = Rodzaj;
         }
-        public virtual ICollection<Games> Collection_Games { get; set; }
-        public virtual ICollection<Genres> Collection_Genres { get; set; }
     }
 }
