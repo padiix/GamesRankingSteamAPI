@@ -1,20 +1,26 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<link rel="stylesheet" href="~/css/fonts.css" />
+<head>
+    <link rel="stylesheet" href="~/css/fonts.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</head>
 <div class="text-center">
-    <div class="container p-5">
-        <div>
+    <div class="container justify-content-center p-3">
+        <div class="card" style="margin:auto; background-color: #262A2E">
+            <div class="card-header">
+                <h4 style="">Top 10 - Najpopularniejsze gry</h4>
+            </div>
+            <div class="card-body">
+                <canvas id="doughnut-chart" width="950" height="400"></canvas>
+            </div>
             <div>
-                <div class="card" style="width:950px; height:400px; margin: auto;">
-                    <div class="card-header">
-                        <h4 style="color:black">Top 10 - Najpopularniejsze gry</h4>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="chDonut1"></canvas>
-                    </div>
-                </div>
+                <span class="text-muted">Zbieranie danych o najpopularniejszych grach w danym okresie następuje każdego tygodnia w sobotę o godzinie 15:00</span>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script src="~/js/doughchart.js"></script>
+}
