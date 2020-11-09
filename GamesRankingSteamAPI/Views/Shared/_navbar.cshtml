@@ -1,26 +1,21 @@
 ﻿<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-        <span class="navbar-brand" href="#">
-            <span class="nav-item active">
-                <a style="color:white" class="h3 nav-link" asp-action="Index">
-                    Games Rank
-                    <span class="sr-only">(current)</span>
-                </a>
-            </span>
-        </span>
-    </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" asp-action="About">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-action="Privacy">Privacy</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<header class="header">
+    <nav class="navbar navbar-expand-lg fixed-top py-3">
+        <div class="container">
+            <a href="#" class="navbar-brand text-uppercase font-weight-bold">Transparent Nav</a>
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a class="nav-link text-uppercase font-weight-bold" asp-action="Index">Home <span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link text-uppercase font-weight-bold" asp-action="About">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-uppercase font-weight-bold" asp-action="Privacy">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+@section Scripts{
+    <script src="~/js/navbar.js"></script>
+}
