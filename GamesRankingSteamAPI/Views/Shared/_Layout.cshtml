@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="~/css/navbar.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
-<body class="page-holder bg-cover" style="background: url(https://asset.wallpaperhunt.net/40097-4k-minimalist-wallpaper-3840x2160-15807428483637_preview_900.jpg) fixed center;">
+@RenderSection("Styles", required: false); 
+
+<body class="page-holder bg-cover" style="background: url(https://wallpapercave.com/wp/wp5728527.jpg) fixed center;
+    ">
     <header>
         <partial name="_navbar" />
     </header>
