@@ -2,20 +2,25 @@
     ViewData["Title"] = "Home Page";
 }
 <head>
-    <link rel="stylesheet" href="~/css/fonts.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 </head>
+@section Styles{ 
+<link rel="stylesheet" href="~/css/pagestyles.css" />
+}
+
 <div class="text-center">
-    <div class="container justify-content-center">
-        <div class="card" style="margin:auto; background-color: #262A2E">
-            <div class="card-header">
-                <h4 style="">Top 10 - Most popular games</h4>
-            </div>
-            <div class="card-body">
-                <canvas id="doughnut-chart" width="950" height="400"></canvas>
-            </div>
-            <div>
-                <span class="text-muted">Collecting data of the most popular games by their playing user count is happening at 3PM each Saturday.</span>
+    <div class="container justify-content-center mx-auto">
+        <div class="row">
+            <div class="card bg-dark" style="margin:auto;">
+                <div class="card-header">
+                    <h4 style="color:white">Top 10 - Most popular games</h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="doughnut-chart"></canvas>
+                </div>
+                <div>
+                    <span class="text-muted" style="color:white">Collecting data of the most popular games by their playing user count is happening at 3PM each Saturday.</span>
+                </div>
             </div>
         </div>
     </div>

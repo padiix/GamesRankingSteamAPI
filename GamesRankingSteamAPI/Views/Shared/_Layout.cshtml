@@ -6,14 +6,16 @@
     <title>Ranking Gier</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/navbar.css"/>
+    <link rel="stylesheet" href="~/css/navbar.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
-<body class="page-holder bg-cover" style="background: url(https://asset.wallpaperhunt.net/40097-4k-minimalist-wallpaper-3840x2160-15807428483637_preview_900.jpg) fixed center;">
+@RenderSection("Styles", required: false); 
+
+<body class="page-holder bg-cover" style="background: url(https://static.vecteezy.com/system/resources/previews/000/338/627/original/joystick-vector-seamless.jpg) fixed center; background-size: 700px">
     <header>
         <partial name="_navbar" />
     </header>
-    <div class="container pt-5">
+    <div class="container pt-2">
         <main role="main" class="pt-5 pb-4">
             @RenderBody()
         </main>

@@ -2,11 +2,17 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "About us";
+    ViewData["Title"] = "About website";
 }
-<link rel="stylesheet" href="~/css/fonts.css" />
-<div>
-    <h1>@ViewData["Title"]</h1>
+@section Styles{ 
+<link rel="stylesheet" href="~/css/pagefonts.css" />
+}
 
-    <p>Use this site to tell user about yourself and your site.</p>
+<div class="card card-signin bg-dark">
+    <div class="card-body">
+        <h1 class="card-title">@ViewData["Title"]</h1>
+
+        <p>This website is a credit project made for class of Internet Technologies 2020.</p>
+        <p>Made by Bartosz Leżyński.</p>
+    </div>
 </div>
