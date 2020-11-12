@@ -28,25 +28,33 @@ var myChart = new Chart(ctx, {
         }]
     },
 
-    /*options: {
+    options: {
         responsive: true,
+        aspectRatio: 1,
         legend: {
-            position: 'bottom',
             labels: {
-                fontColor = 'white',
-                fontFamily = "'Roboto', sans-serif",
-                fontSize = 10,
+                boxWidth: 15,
+                fontColor: 'white',
+                fontFamily: "'Roboto', sans-serif",
+                fontSize: 12
+            },
+            position: 'bottom'
+        },
+
+        layout: {
+            padding: {
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0
             }
         },
-        title: {
-            display: true,
-            text: 'Top 10 - Najczęściej grane'
-        },
+
         animation: {
             animateScale: true,
             animateRotate: true
         }
-    }*/
+    }
     //TODO: NAPRAWIĆ WYŚWIETLANIE WYKRESU.
 });
     
