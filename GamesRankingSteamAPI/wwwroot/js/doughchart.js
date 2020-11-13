@@ -1,5 +1,4 @@
 ﻿var ctx = document.getElementById('myChart');
-var holder = document.getElementById('canvas-holder');
 var myChart;
 
 var dataset = {
@@ -12,11 +11,11 @@ var dataset = {
             10, 20, 30, 40, 50, 60, 70, 80, 90, 100
         ],
         backgroundColor: [
-            '#1f77b4',
-            '#ff7f0e',
-            '#2ca02c',
-            '#d62728',
-            '#96E90A',
+            pattern.draw('square', '#1f77b4'),
+            pattern.draw('circle', '#ff7f0e'),
+            pattern.draw('diamond', '#2ca02c'),
+            pattern.draw('zigzag-horizontal', '#17becf'),
+            pattern.draw('triangle', 'rgb(255, 99, 132, 0.4)'),
             '#7D4721',
             '#2AF5B3',
             '#335268',
@@ -27,17 +26,17 @@ var dataset = {
     }]
 };
 
-var configNotMobile = {
+var config = {
     type: 'doughnut',
 
     data: dataset,
 
     options: {
         responsive: true,
-        aspectRatio: 2,
+        maintainAspectRatio: false,
         legend: {
             labels: {
-                boxWidth: 25,
+                boxWidth: 22,
                 fontColor: 'white',
                 fontFamily: "'Roboto', sans-serif",
                 fontSize: 18
@@ -61,113 +60,4 @@ var configNotMobile = {
     }
 }
 
-var configMobile = {
-    type: 'doughnut',
-
-    data: dataset,
-
-    options: {
-        responsive: true,
-            aspectRatio: 1,
-                legend: {
-            labels: {
-                boxWidth: 15,
-                fontColor: 'white',
-                fontFamily: "'Roboto', sans-serif",
-                fontSize: 11
-            },
-            position: 'bottom'
-        },
-
-        layout: {
-            padding: {
-                left: 0,
-                right: 0,
-                top: 10,
-                bottom: 0
-            }
-        },
-
-        animation: {
-            animateScale: true,
-            animateRotate: true
-        }
-    }
-}
-
-function updateForMobile(myChart) {
-    myChart.options = {
-        responsive: true,
-            aspectRatio: 1,
-                legend: {
-            labels: {
-                boxWidth: 15,
-                    fontColor: 'white',
-                        fontFamily: "'Roboto', sans-serif",
-                            fontSize: 11
-            },
-            position: 'bottom'
-        },
-
-        layout: {
-            padding: {
-                left: 0,
-                    right: 0,
-                        top: 10,
-                            bottom: 0
-            }
-        },
-
-        animation: {
-            animateScale: true,
-                animateRotate: true
-        }
-    };
-    myChart.update();
-}
-
-function updateForOthers(myChart) {
-    myChart.options = {
-        responsive: true,
-        aspectRatio: 2,
-        legend: {
-            labels: {
-                boxWidth: 25,
-                fontColor: 'white',
-                fontFamily: "'Roboto', sans-serif",
-                fontSize: 18
-            },
-            position: 'bottom'
-        },
-
-        layout: {
-            padding: {
-                left: 0,
-                right: 0,
-                top: 10,
-                bottom: 0
-            }
-        },
-
-        animation: {
-            animateScale: true,
-            animateRotate: true
-        }
-    };
-    myChart.update();
-}
-
-
-window.onload = function () {
-    if (window.screen.availWidth >= 360) {
-        myChart = new Chart(ctx, configNotMobile);
-        holder.style.width = "80%";
-    }
-    else {
-        myChart = new Chart(ctx, configMobile);
-        holder.style.width = "100%";
-    }
-}
-
-
-
+myChart = new Chart(ctx, config);
