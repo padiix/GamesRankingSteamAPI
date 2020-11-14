@@ -16,11 +16,11 @@ var dataset = {
             pattern.draw('diamond', '#2ca02c'),
             pattern.draw('zigzag-horizontal', '#17becf'),
             pattern.draw('triangle', 'rgb(255, 99, 132, 0.4)'),
-            '#7D4721',
-            '#2AF5B3',
-            '#335268',
-            '#7BECF7',
-            '#2ca12d'
+            pattern.draw('dot','#7D4721'),
+            pattern.draw('dot-dash','#2AF5B3'),
+            pattern.draw('cross','#335268'),
+            pattern.draw('line','#7BECF7'),
+            pattern.draw('line-vertical','#2ca12d')
         ],
         borderColor: '#343a40'
     }]

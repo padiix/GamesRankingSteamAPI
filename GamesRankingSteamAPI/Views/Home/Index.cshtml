@@ -1,13 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+
 <head>
     <link rel="stylesheet" href="~/css/pagestyles.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 </head>
 
 <div class="text-center">
-    <div class="col-sm-7 col-md-5 mx-auto card-signin bg-dark">
+    <div class="col-sm-7 col-md-7 mx-auto card-signin bg-dark">
         <div class="card-body">
             <div class="card-header bg-info justify-content-center">
                 <h4 style="color:white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Top 10 - Most popular games</h4>
@@ -28,29 +29,35 @@
     <script src="~/js/doughchart.js"></script>
 }
 
-@*<script>
-        var isMobile = {
-            Android: function () {
-                return navigator.userAgent.match(/Android/i);
-            },
-            BlackBerry: function () {
-                return navigator.userAgent.match(/BlackBerry/i);
-            },
-            iOS: function () {
-                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-            },
-            Opera: function () {
-                return navigator.userAgent.match(/Opera Mini/i);
-            },
-            Windows: function () {
-                return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
-            },
-            any: function () {
-                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-            }
-        };
-
-        if (isMobile.any()) {
-
+<script>
+    var chart = document.getElementById("myChart");
+    var isMobile = {
+        Android: function () {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function () {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function () {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function () {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function () {
+            return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+        },
+        any: function () {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
         }
-    </script>*@
+    };
+
+    if (isMobile.any()) {
+        chart.style.width = "400px";
+        chart.style.height = "400px";
+    }
+    else {
+        chart.style.width = "700px";
+        chart.style.height = "700px"
+    }
+</script>
