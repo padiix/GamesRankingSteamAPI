@@ -4,4 +4,12 @@
 
 .bg-image {
     background: url(https://images2.imgbox.com/72/11/wsyuMmhX_o.png) fixed center;
+    background-size: 1800px;
+}
+
+@media (max-width: 991.98px) {
+    .bg-image {
+        background: url(https://images2.imgbox.com/72/11/wsyuMmhX_o.png) fixed center;
+        background-size: 475px;
+    }
 }
