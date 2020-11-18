@@ -3,7 +3,7 @@
 }
 
 <head>
-    <link rel="stylesheet" href="~/css/pagestyles.css" />
+    <link rel="stylesheet" href="~/css/pagestyles.css?v=1.2" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 </head>
 
@@ -14,8 +14,8 @@
                 <h4 style="color:white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Top 10 - Most popular games</h4>
             </div>
         </div>
-        <div id="canvas-holder" class="canvas-holder mx-auto" style="position: relative;">
-            <canvas id="myChart" width="450", height="450"></canvas>
+        <div class="mx-auto" style="position: relative;">
+            <canvas id="myChart" class="canvas"></canvas>
         </div>
         <div class="pl-2 pr-2 pb-2">
             <span class="text-muted" style="color:white">Collecting data of the most popular games by their playing user count is happening at 3PM each Saturday.</span>
@@ -28,36 +28,3 @@
 @section Scripts{
     <script src="~/js/doughchart.js"></script>
 }
-
-<script>
-    var chart = document.getElementById("myChart");
-    var isMobile = {
-        Android: function () {
-            return navigator.userAgent.match(/Android/i);
-        },
-        BlackBerry: function () {
-            return navigator.userAgent.match(/BlackBerry/i);
-        },
-        iOS: function () {
-            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-        },
-        Opera: function () {
-            return navigator.userAgent.match(/Opera Mini/i);
-        },
-        Windows: function () {
-            return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
-        },
-        any: function () {
-            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-        }
-    };
-
-    if (isMobile.any()) {
-        chart.style.width = "400px";
-        chart.style.height = "400px";
-    }
-    else {
-        chart.style.width = "700px";
-        chart.style.height = "700px"
-    }
-</script>
