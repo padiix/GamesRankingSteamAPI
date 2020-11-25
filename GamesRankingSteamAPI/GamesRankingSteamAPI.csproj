@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
+    <UserSecretsId>6def69fb-ec0d-44fe-9d56-3ef4bffbda0d</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +15,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
 </Project>
