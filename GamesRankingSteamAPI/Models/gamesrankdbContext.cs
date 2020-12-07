@@ -79,8 +79,6 @@ namespace GamesRankingSteamAPI.Models
 
                 entity.Property(e => e.FirstReleaseDate).HasColumnType("date");
 
-                entity.Property(e => e.Pegi).HasColumnName("PEGI");
-
                 entity.Property(e => e.Summary)
                     .HasMaxLength(500)
                     .HasComment("opis - opis gry video (kopiuj wklej z strony internetowej zawierającej informacje o grze)");
@@ -92,10 +90,6 @@ namespace GamesRankingSteamAPI.Models
 
                 entity.Property(e => e.Updated).HasColumnType("date");
 
-                entity.Property(e => e.Url)
-                    .HasColumnName("URL")
-                    .HasMaxLength(150)
-                    .HasComment("adresww - adres strony internetowej gry video");
             });
 
             modelBuilder.Entity<Top15interestinggames>(entity =>
@@ -109,10 +103,6 @@ namespace GamesRankingSteamAPI.Models
                     .HasName("fk_Top15InterestingGames_Genres1_idx");
 
                 entity.Property(e => e.FirstReleaseDate).HasColumnType("date");
-
-                entity.Property(e => e.Pegi).HasColumnName("PEGI");
-
-                entity.Property(e => e.Summary).HasMaxLength(500);
 
                 entity.Property(e => e.Title)
                     .IsRequired()

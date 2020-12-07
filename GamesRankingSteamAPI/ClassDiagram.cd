@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="GamesRankingSteamAPI.Migrations.GamesRankingDB">
+    <Position X="5.5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20201207203208_GamesRankingDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamesRankingSteamAPI.Migrations.gamesrankdbContextModelSnapshot">
+    <Position X="5.5" Y="2.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Migrations\gamesrankdbContextModelSnapshot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamesRankingSteamAPI.Models.Games">
+    <Position X="9.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQIEAAAAMAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Models\Games.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamesRankingSteamAPI.Models.gamesrankdbContext">
+    <Position X="0.5" Y="0.5" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAUAQAAAAAAIAAAAAEAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Models\gamesrankdbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamesRankingSteamAPI.Models.Genres">
+    <Position X="9.25" Y="3" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Models\Genres.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamesRankingSteamAPI.Models.Top10populargames">
+    <Position X="6" Y="4" Width="3" />
+    <TypeIdentifier>
+      <HashCode>ACCAAAAAAAAAAEAAAAEAAAAAAAAAAAEAQAAAAQAAAAA=</HashCode>
+      <FileName>Models\Top10populargames.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamesRankingSteamAPI.Models.Top15interestinggames">
+    <Position X="11.75" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAIEAAAAMAAAAAAAAAAAAASAAAAAAAAAA=</HashCode>
+      <FileName>Models\Top15interestinggames.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GamesRankingSteamAPI.Service.IGDBAPI">
+    <Position X="0.5" Y="3.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAIAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Service\IGDBApi\IGDBAPI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
