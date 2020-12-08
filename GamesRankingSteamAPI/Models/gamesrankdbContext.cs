@@ -44,7 +44,11 @@ namespace GamesRankingSteamAPI.Models
 
                 entity.Property(e => e.Title)
                     .IsRequired()
-                    .HasMaxLength(100);
+                    .HasMaxLength(150);
+                
+                entity.Property(e => e.Summary)
+                    .HasMaxLength(1000)
+                    .HasComment("opis - opis gry video (kopiuj wklej z strony internetowej zawierającej informacje o grze)");
 
                 entity.Property(e => e.Url)
                     .IsRequired()
@@ -76,12 +80,6 @@ namespace GamesRankingSteamAPI.Models
                     .HasName("PRIMARY");
 
                 entity.ToTable("top10populargames");
-
-                entity.Property(e => e.FirstReleaseDate).HasColumnType("date");
-
-                entity.Property(e => e.Summary)
-                    .HasMaxLength(500)
-                    .HasComment("opis - opis gry video (kopiuj wklej z strony internetowej zawierającej informacje o grze)");
 
                 entity.Property(e => e.Title)
                     .IsRequired()

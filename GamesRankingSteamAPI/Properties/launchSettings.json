@@ -12,9 +12,9 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "IGDB_CLIENT_SECRET": "Bearer j4ormmv3o9c64eyct6wvp26rm1y6wn",
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "IGDB_CLIENT_ID": "t0dqjhlap8vru8k88ss3fykty15m4d"
+        "SECRET": "8gl183ii44mbs7mxavza3m1ydxktk1",
+        "CLIENT_ID": "t0dqjhlap8vru8k88ss3fykty15m4d",
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "GamesRankingSteamAPI": {

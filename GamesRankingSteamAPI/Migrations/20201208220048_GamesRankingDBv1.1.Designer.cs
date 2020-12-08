@@ -3,14 +3,16 @@ using System;
 using GamesRankingSteamAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GamesRankingSteamAPI.Migrations
 {
     [DbContext(typeof(gamesrankdbContext))]
-    partial class gamesrankdbContextModelSnapshot : ModelSnapshot
+    [Migration("20201208220048_GamesRankingDBv1.1")]
+    partial class GamesRankingDBv11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
