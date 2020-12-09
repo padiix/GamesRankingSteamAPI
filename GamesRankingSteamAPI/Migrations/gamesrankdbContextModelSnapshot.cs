@@ -23,16 +23,12 @@ namespace GamesRankingSteamAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("GenreId")
-                        .HasColumnType("bigint");
-
                     b.Property<int?>("Pegi")
                         .HasColumnName("PEGI")
                         .HasColumnType("int");
 
                     b.Property<string>("Summary")
                         .HasColumnType("varchar(1000)")
-                        .HasComment("opis - opis gry video (kopiuj wklej z strony internetowej zawierającej informacje o grze)")
                         .HasMaxLength(1000);
 
                     b.Property<string>("Title")
@@ -49,9 +45,6 @@ namespace GamesRankingSteamAPI.Migrations
                     b.HasKey("GameId")
                         .HasName("PRIMARY");
 
-                    b.HasIndex("GenreId")
-                        .HasName("fk_Games_Genres_idx");
-
                     b.ToTable("games");
                 });
 
@@ -61,13 +54,27 @@ namespace GamesRankingSteamAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("GamesGameId")
+                        .HasColumnName("games_GameId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(60)")
                         .HasMaxLength(60);
 
+                    b.Property<long?>("Top15interestinggamesGameId")
+                        .HasColumnName("top15interestinggames_GameId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("GenreId")
                         .HasName("PRIMARY");
+
+                    b.HasIndex("GamesGameId")
+                        .HasName("fk_genres_games_idx");
+
+                    b.HasIndex("Top15interestinggamesGameId")
+                        .HasName("fk_genres_top15interestinggames1_idx");
 
                     b.ToTable("genres");
                 });
@@ -87,7 +94,6 @@ namespace GamesRankingSteamAPI.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("varchar(150)")
-                        .HasComment("nazwa_gra - nazwa gry video")
                         .HasMaxLength(150);
 
                     b.Property<DateTime?>("Updated")
@@ -108,9 +114,6 @@ namespace GamesRankingSteamAPI.Migrations
                     b.Property<DateTime?>("FirstReleaseDate")
                         .HasColumnType("date");
 
-                    b.Property<long?>("GenreId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("varchar(150)")
@@ -127,26 +130,20 @@ namespace GamesRankingSteamAPI.Migrations
                     b.HasKey("GameId")
                         .HasName("PRIMARY");
 
-                    b.HasIndex("GenreId")
-                        .HasName("fk_Top15InterestingGames_Genres1_idx");
-
                     b.ToTable("top15interestinggames");
                 });
 
-            modelBuilder.Entity("GamesRankingSteamAPI.Models.Games", b =>
+            modelBuilder.Entity("GamesRankingSteamAPI.Models.Genres", b =>
                 {
-                    b.HasOne("GamesRankingSteamAPI.Models.Genres", "Genre")
-                        .WithMany("Games")
-                        .HasForeignKey("GenreId")
-                        .HasConstraintName("fk_Games_Genres");
-                });
+                    b.HasOne("GamesRankingSteamAPI.Models.Games", "GamesGame")
+                        .WithMany("Genres")
+                        .HasForeignKey("GamesGameId")
+                        .HasConstraintName("fk_genres_games");
 
-            modelBuilder.Entity("GamesRankingSteamAPI.Models.Top15interestinggames", b =>
-                {
-                    b.HasOne("GamesRankingSteamAPI.Models.Genres", "Genre")
-                        .WithMany("Top15interestinggames")
-                        .HasForeignKey("GenreId")
-                        .HasConstraintName("fk_Top15InterestingGames_Genres1");
+                    b.HasOne("GamesRankingSteamAPI.Models.Top15interestinggames", "Top15interestinggamesGame")
+                        .WithMany("Genres")
+                        .HasForeignKey("Top15interestinggamesGameId")
+                        .HasConstraintName("fk_genres_top15interestinggames1");
                 });
 #pragma warning restore 612, 618
         }

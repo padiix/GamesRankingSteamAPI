@@ -37,29 +37,18 @@ namespace GamesRankingSteamAPI.Models
 
                 entity.ToTable("games");
 
-                entity.HasIndex(e => e.GenreId)
-                    .HasName("fk_Games_Genres_idx");
-
                 entity.Property(e => e.Pegi).HasColumnName("PEGI");
+
+                entity.Property(e => e.Summary).HasMaxLength(1000);
 
                 entity.Property(e => e.Title)
                     .IsRequired()
                     .HasMaxLength(150);
-                
-                entity.Property(e => e.Summary)
-                    .HasMaxLength(1000)
-                    .HasComment("opis - opis gry video (kopiuj wklej z strony internetowej zawierającej informacje o grze)");
 
                 entity.Property(e => e.Url)
                     .IsRequired()
                     .HasColumnName("URL")
                     .HasMaxLength(150);
-
-                entity.HasOne(d => d.Genre)
-                    .WithMany(p => p.Games)
-                    .HasForeignKey(d => d.GenreId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_Games_Genres");
             });
 
             modelBuilder.Entity<Genres>(entity =>
@@ -69,9 +58,31 @@ namespace GamesRankingSteamAPI.Models
 
                 entity.ToTable("genres");
 
+                entity.HasIndex(e => e.GamesGameId)
+                    .HasName("fk_genres_games_idx");
+
+                entity.HasIndex(e => e.Top15interestinggamesGameId)
+                    .HasName("fk_genres_top15interestinggames1_idx");
+
+                entity.Property(e => e.GamesGameId).HasColumnName("games_GameId");
+
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(60);
+
+                entity.Property(e => e.Top15interestinggamesGameId).HasColumnName("top15interestinggames_GameId");
+
+                entity.HasOne(d => d.GamesGame)
+                    .WithMany(p => p.Genres)
+                    .HasForeignKey(d => d.GamesGameId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_genres_games");
+
+                entity.HasOne(d => d.Top15interestinggamesGame)
+                    .WithMany(p => p.Genres)
+                    .HasForeignKey(d => d.Top15interestinggamesGameId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_genres_top15interestinggames1");
             });
 
             modelBuilder.Entity<Top10populargames>(entity =>
@@ -83,11 +94,9 @@ namespace GamesRankingSteamAPI.Models
 
                 entity.Property(e => e.Title)
                     .IsRequired()
-                    .HasMaxLength(150)
-                    .HasComment("nazwa_gra - nazwa gry video");
+                    .HasMaxLength(150);
 
                 entity.Property(e => e.Updated).HasColumnType("date");
-
             });
 
             modelBuilder.Entity<Top15interestinggames>(entity =>
@@ -96,9 +105,6 @@ namespace GamesRankingSteamAPI.Models
                     .HasName("PRIMARY");
 
                 entity.ToTable("top15interestinggames");
-
-                entity.HasIndex(e => e.GenreId)
-                    .HasName("fk_Top15InterestingGames_Genres1_idx");
 
                 entity.Property(e => e.FirstReleaseDate).HasColumnType("date");
 
@@ -111,12 +117,6 @@ namespace GamesRankingSteamAPI.Models
                 entity.Property(e => e.Url)
                     .HasColumnName("URL")
                     .HasMaxLength(150);
-
-                entity.HasOne(d => d.Genre)
-                    .WithMany(p => p.Top15interestinggames)
-                    .HasForeignKey(d => d.GenreId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_Top15InterestingGames_Genres1");
             });
 
             OnModelCreatingPartial(modelBuilder);

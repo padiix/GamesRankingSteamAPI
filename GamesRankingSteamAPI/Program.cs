@@ -15,8 +15,9 @@ namespace GamesRankingSteamAPI
     {
         public static void Main(string[] args)
         {
-            GamesRankingSteamAPI.Service.IGDBAPI IGDBAPI = new Service.IGDBAPI();
+            Service.IGDBAPI IGDBAPI = new Service.IGDBAPI();
             IGDBAPI.GetDataAndSendToDatabase();
+
             CreateHostBuilder(args).Build().Run();
         }
 

@@ -14,50 +14,48 @@ namespace GamesRankingSteamAPI.Service
     public class IGDBAPI
     {
 
-        /*private static readonly DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0,
+        private static readonly DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0,
                                                       DateTimeKind.Utc);
         public static DateTime UnixTimeToDateTime(string text)
         {
             double seconds = double.Parse(text, CultureInfo.InvariantCulture);
             return Epoch.AddSeconds(seconds);
-        }*/
+        }
+        public static long ConvertToUnixTime(DateTime datetime)
+        {
+            DateTime sTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+            return (long)(datetime - sTime).TotalSeconds;
+        }
 
         public async void GetDataAndSendToDatabase()
         {
             DateTime currentDate = DateTime.UtcNow.Date;
-            var firstDayMonth = new DateTime(currentDate.Year, currentDate.Month, 1);
-            var lastDayMonth = firstDayMonth.AddMonths(1).AddDays(-1);
-            long unixFirst = ((DateTimeOffset)firstDayMonth).ToUnixTimeSeconds();
-            long unixLast = ((DateTimeOffset)lastDayMonth).ToUnixTimeSeconds();
-            //long unixLastFixed = unixFirst + 5356798;
+            DateTime threeMonthsBehindUNIX = DateTime.UtcNow.Date.AddMonths(-3);
+            var firstDayMonth = new DateTime(threeMonthsBehindUNIX.Year, threeMonthsBehindUNIX.Month, 1);
+            var unixFirst = ConvertToUnixTime(firstDayMonth);
+            var unixCurr = ConvertToUnixTime(currentDate);
 
             var igdb = new IGDBClient(Environment.GetEnvironmentVariable("CLIENT_ID"), Environment.GetEnvironmentVariable("SECRET"));
 
-            /*var top15InterestingGames = await igdb.QueryAsync<Game>(IGDBClient.Endpoints.Games,
-                    query: "fields id, name, summary, genres.name, age_ratings.rating, first_release_date, total_rating, follows, url; "
-                            + "sort follows desc; "
-                            + "where follows != null & first_release_date >= "+ unixFirst +"; "
-                            + "limit 15; ");*/
-
-
-            //2505602 - wartość równego miesiąca w Unix Time Stamp
-            //5356798 - wartość miesiąca od 1. (00:00:01) do 31. (23:59:59) w Unix Time Stamp
-            using var context = new gamesrankdbContext();
+            using var dbcontext = new gamesrankdbContext();
             {
-                #nullable enable
-                Top10populargames FirstRowData =  context.Top10populargames.FirstOrDefault();
-                #nullable disable
-                if (FirstRowData?.Updated.Value == null) // If date in table is null we provide the thing with data and set the update row. 
-                {
-                    var top10PopularGames = await igdb.QueryAsync<Game>(IGDBClient.Endpoints.Games,
-                        query: "fields id, age_ratings.category, age_ratings.rating, category, first_release_date, rating, rating_count, genres.name, name, summary, url;" +
-                        " sort rating_count desc;" +
-                        " where(rating > 60) & (rating_count > 8) & (hypes != null) & (category = 0) & (first_release_date >= 1598918401) & (first_release_date < 1604275199);" +
-                        " limit 10; ");
+                //
+                //      Adding data to Top10PopularGames
+                //
                 
-                        foreach (Game game in top10PopularGames)    //Checking every thing in the top10 popular games object from IGDB API Package.
+                #nullable enable
+                dynamic FirstRowData = dbcontext.Top10populargames.FirstOrDefault();
+                #nullable disable
+                if (FirstRowData?.Updated == null) // If date in table is null we provide the thing with data and set the update row. 
+                {
+                    var top10PopularGames = await igdb.QueryAsync<Game>(IGDBClient.Endpoints.Games, query: "fields id, rating, rating_count, name;" +
+                        " sort rating_count desc;" +
+                        " where(rating > 60) & (rating_count > 8) & (hypes != null) & (category = 0) & (first_release_date >= "+unixFirst+") & (first_release_date < "+unixCurr+");" +
+                        " limit 10;");
+
+                    foreach (Game game in top10PopularGames)    //Checking every thing in the top10 popular games object from IGDB API Package.
                         {
-                            //var ReleaseDate = game.FirstReleaseDate.Value;    Getting the FirstReleaseDate from the query.
                             var TPRecord = new Top10populargames()
                             {
                                 GameId = game.Id,
@@ -67,21 +65,21 @@ namespace GamesRankingSteamAPI.Service
                                 Updated = currentDate
                             };
 
-                            context.Top10populargames.Add(TPRecord);
+                            dbcontext.Top10populargames.Add(TPRecord);
                         }
-                    await context.SaveChangesAsync();
+                    await dbcontext.SaveChangesAsync();
                 }
                 else
                 {
-                    DateTime LastUpdate = (DateTime)FirstRowData.Updated.Value;
+                    DateTime LastUpdate = (DateTime)FirstRowData.Updated;
                     TimeSpan timeSpan = currentDate.Subtract(LastUpdate);
 
                     if (timeSpan.TotalDays > 6)
                     {
                         try
                         {
-                            context.Database.ExecuteSqlRaw("TRUNCATE TABLE top10populargames;"); // Working deletion of all data inside table.
-                            await context.SaveChangesAsync();
+                            dbcontext.Database.ExecuteSqlRaw("TRUNCATE TABLE top10populargames;"); // Working deletion of all data inside table.
+                            await dbcontext.SaveChangesAsync();
                         }
                         catch (DbUpdateConcurrencyException ex)
                         {
@@ -93,9 +91,9 @@ namespace GamesRankingSteamAPI.Service
                         }
 
                         var top10PopularGames = await igdb.QueryAsync<Game>(IGDBClient.Endpoints.Games,
-                        query: "fields id, age_ratings.category, age_ratings.rating, category, first_release_date, rating, rating_count, genres.name, name, summary, url;" +
+                        query: "fields id, rating, rating_count, name;" +
                         " sort rating_count desc;" +
-                        " where(rating > 60) & (rating_count > 8) & (hypes != null) & (category = 0) & (first_release_date >= 1598918401) & (first_release_date < 1604275199);" +
+                        " where(rating > 60) & (rating_count > 8) & (hypes != null) & (category = 0) & (first_release_date >= " + unixFirst + ") & (first_release_date < " + unixCurr + ");" +
                         " limit 10; ");
 
                         foreach (Game game in top10PopularGames)    //Checking every thing in the top10 popular games object from IGDB API Package.
@@ -109,11 +107,52 @@ namespace GamesRankingSteamAPI.Service
                                 Updated = currentDate
                             };
 
-                            context.Top10populargames.Add(TPRecord);
+                            dbcontext.Top10populargames.Add(TPRecord);
                         }
-                        await context.SaveChangesAsync();
+                        await dbcontext.SaveChangesAsync();
                     }
                 }
+
+                //
+                //      Adding data to Top15InterestingGames that has one-to-many relationship with Genres
+                //
+
+                //FirstRowData = context.Top15interestinggames.FirstOrDefault();
+                //if (FirstRowData?.Updated == null)
+                //{
+                //    var top15InterestingGames = await igdb.QueryAsync<Game>(IGDBClient.Endpoints.Games,
+                //    query: "fields id, name, genres.name, first_release_date, url;" +
+                //    " sort follows desc;" +
+                //    " where follows != null & first_release_date >= "+ unixFirst +";" +
+                //    " limit 15; ");
+
+                //    foreach (Game game in top15InterestingGames)
+                //    {
+                //        List<Genres> GRecord;
+                //        var tmp = game.Genres.Values.ToList();
+
+                //        GRecord = tmp.ConvertAll(x => new Genres() 
+                //        { 
+                //            GenreId = x.Id, 
+                //            Name = x.Name,
+                //            GamesGameId = game.Id
+                //        });
+
+                //        var ReleaseDate = game.FirstReleaseDate.Value;
+                //        var TIRecord = new Top15interestinggames()
+                //        {
+                //            GameId = game.Id,
+                //            Title = game.Name,
+                //            FirstReleaseDate = ReleaseDate.UtcDateTime,
+                //            Url = game.Url,
+                //            Updated = currentDate,
+                //            Genres = GRecord     
+                //        };
+
+                //        //context.Top15interestinggames.Add(TIRecord);
+                //    }
+                //    //await context.SaveChangesAsync();
+                //}
             }
         }
     }
