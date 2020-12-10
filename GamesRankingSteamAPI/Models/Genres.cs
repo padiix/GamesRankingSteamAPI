@@ -5,12 +5,14 @@ namespace GamesRankingSteamAPI.Models
 {
     public partial class Genres
     {
-        public long? GenreId { get; set; }
-        public string Name { get; set; }
-        public long? GamesGameId { get; set; }
-        public long? Top15interestinggamesGameId { get; set; }
+        public Genres()
+        {
+            Top15interestinggamesHasGenres = new HashSet<Top15interestinggamesHasGenres>();
+        }
 
-        public virtual Games GamesGame { get; set; }
-        public virtual Top15interestinggames Top15interestinggamesGame { get; set; }
+        public long GenreId { get; set; }
+        public string Name { get; set; }
+
+        public virtual ICollection<Top15interestinggamesHasGenres> Top15interestinggamesHasGenres { get; set; }
     }
 }

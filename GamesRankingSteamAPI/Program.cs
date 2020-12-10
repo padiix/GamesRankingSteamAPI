@@ -15,9 +15,13 @@ namespace GamesRankingSteamAPI
     {
         public static void Main(string[] args)
         {
-            Service.IGDBAPI IGDBAPI = new Service.IGDBAPI();
-            IGDBAPI.GetDataAndSendToDatabase();
-
+            Task preparedb = Task.Run(() => 
+            { 
+                Service.IGDBAPI IGDBAPI = new Service.IGDBAPI();
+                IGDBAPI.GetDataAndSendToDatabase(); 
+            });
+            preparedb.Wait();
+            Console.WriteLine("Preparing database: " + preparedb.Status);
             CreateHostBuilder(args).Build().Run();
         }
 

@@ -7,7 +7,7 @@ namespace GamesRankingSteamAPI.Models
     {
         public Top15interestinggames()
         {
-            Genres = new HashSet<Genres>();
+            Top15interestinggamesHasGenres = new HashSet<Top15interestinggamesHasGenres>();
         }
 
         public long? GameId { get; set; }
@@ -16,6 +16,6 @@ namespace GamesRankingSteamAPI.Models
         public string Url { get; set; }
         public DateTime? Updated { get; set; }
 
-        public virtual ICollection<Genres> Genres { get; set; }
+        public virtual ICollection<Top15interestinggamesHasGenres> Top15interestinggamesHasGenres { get; set; }
     }
 }

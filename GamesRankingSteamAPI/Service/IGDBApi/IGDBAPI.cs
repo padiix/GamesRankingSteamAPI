@@ -81,11 +81,11 @@ namespace GamesRankingSteamAPI.Service
                             dbcontext.Database.ExecuteSqlRaw("TRUNCATE TABLE top10populargames;"); // Working deletion of all data inside table.
                             await dbcontext.SaveChangesAsync();
                         }
-                        catch (DbUpdateConcurrencyException ex)
+                        catch (DbUpdateConcurrencyException)
                         {
                             throw new Exception("Failed truncating the tables.");
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             throw;
                         }

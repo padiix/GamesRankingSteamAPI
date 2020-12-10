@@ -15,42 +15,22 @@ namespace GamesRankingSteamAPI.Models
         {
         }
 
-        public virtual DbSet<Games> Games { get; set; }
         public virtual DbSet<Genres> Genres { get; set; }
         public virtual DbSet<Top10populargames> Top10populargames { get; set; }
         public virtual DbSet<Top15interestinggames> Top15interestinggames { get; set; }
+        public virtual DbSet<Top15interestinggamesHasGenres> Top15interestinggamesHasGenres { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseMySQL("server=localhost;port=3306;database=gamesrankdb;user=user;password=password;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Games>(entity =>
-            {
-                entity.HasKey(e => e.GameId)
-                    .HasName("PRIMARY");
-
-                entity.ToTable("games");
-
-                entity.Property(e => e.Pegi).HasColumnName("PEGI");
-
-                entity.Property(e => e.Summary).HasMaxLength(1000);
-
-                entity.Property(e => e.Title)
-                    .IsRequired()
-                    .HasMaxLength(150);
-
-                entity.Property(e => e.Url)
-                    .IsRequired()
-                    .HasColumnName("URL")
-                    .HasMaxLength(150);
-            });
-
             modelBuilder.Entity<Genres>(entity =>
             {
                 entity.HasKey(e => e.GenreId)
@@ -58,31 +38,9 @@ namespace GamesRankingSteamAPI.Models
 
                 entity.ToTable("genres");
 
-                entity.HasIndex(e => e.GamesGameId)
-                    .HasName("fk_genres_games_idx");
-
-                entity.HasIndex(e => e.Top15interestinggamesGameId)
-                    .HasName("fk_genres_top15interestinggames1_idx");
-
-                entity.Property(e => e.GamesGameId).HasColumnName("games_GameId");
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(60);
-
-                entity.Property(e => e.Top15interestinggamesGameId).HasColumnName("top15interestinggames_GameId");
-
-                entity.HasOne(d => d.GamesGame)
-                    .WithMany(p => p.Genres)
-                    .HasForeignKey(d => d.GamesGameId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_genres_games");
-
-                entity.HasOne(d => d.Top15interestinggamesGame)
-                    .WithMany(p => p.Genres)
-                    .HasForeignKey(d => d.Top15interestinggamesGameId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_genres_top15interestinggames1");
             });
 
             modelBuilder.Entity<Top10populargames>(entity =>
@@ -117,6 +75,36 @@ namespace GamesRankingSteamAPI.Models
                 entity.Property(e => e.Url)
                     .HasColumnName("URL")
                     .HasMaxLength(150);
+            });
+
+            modelBuilder.Entity<Top15interestinggamesHasGenres>(entity =>
+            {
+                entity.HasKey(e => new { e.Top15interestinggamesGameId, e.GenresGenreId })
+                    .HasName("PRIMARY");
+
+                entity.ToTable("top15interestinggames_has_genres");
+
+                entity.HasIndex(e => e.GenresGenreId)
+                    .HasName("fk_top15interestinggames_has_genres_genres1_idx");
+
+                entity.HasIndex(e => e.Top15interestinggamesGameId)
+                    .HasName("fk_top15interestinggames_has_genres_top15interestinggames_idx");
+
+                entity.Property(e => e.Top15interestinggamesGameId).HasColumnName("top15interestinggames_GameId");
+
+                entity.Property(e => e.GenresGenreId).HasColumnName("genres_GenreId");
+
+                entity.HasOne(d => d.GenresGenre)
+                    .WithMany(p => p.Top15interestinggamesHasGenres)
+                    .HasForeignKey(d => d.GenresGenreId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_top15interestinggames_has_genres_genres1");
+
+                entity.HasOne(d => d.Top15interestinggamesGame)
+                    .WithMany(p => p.Top15interestinggamesHasGenres)
+                    .HasForeignKey(d => d.Top15interestinggamesGameId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_top15interestinggames_has_genres_top15interestinggames");
             });
 
             OnModelCreatingPartial(modelBuilder);
