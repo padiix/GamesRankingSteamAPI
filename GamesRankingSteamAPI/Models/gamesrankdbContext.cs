@@ -95,13 +95,13 @@ namespace GamesRankingSteamAPI.Models
                 entity.Property(e => e.GenresGenreId).HasColumnName("genres_GenreId");
 
                 entity.HasOne(d => d.GenresGenre)
-                    .WithMany(p => p.Top15interestinggamesHasGenres)
+                    .WithMany(p => p.Top15interestinggamesHG)
                     .HasForeignKey(d => d.GenresGenreId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_top15interestinggames_has_genres_genres1");
 
                 entity.HasOne(d => d.Top15interestinggamesGame)
-                    .WithMany(p => p.Top15interestinggamesHasGenres)
+                    .WithMany(p => p.Top15interestinggamesHG)
                     .HasForeignKey(d => d.Top15interestinggamesGameId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_top15interestinggames_has_genres_top15interestinggames");
