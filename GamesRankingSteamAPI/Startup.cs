@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using GamesRankingSteamAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GamesRankingSteamAPI
 {
@@ -26,6 +28,9 @@ namespace GamesRankingSteamAPI
         public void ConfigureServices(IServiceCollection services)
         {
             IMvcBuilder builder = services.AddRazorPages();
+
+            var connection = "server=localhost;port=3306;database=gamesrankdb;user=user;password=password;";
+            services.AddDbContext<gamesrankdbContext>(options => options.UseMySQL(connection));
 
         #if DEBUG
             if (Env.IsDevelopment())
