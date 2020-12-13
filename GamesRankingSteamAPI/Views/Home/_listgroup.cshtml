@@ -1,4 +1,5 @@
 ﻿@page
+@model GamesRankingSteamAPI.Views.Home._listgroupModel
 @{
 }
 <style>
@@ -17,16 +18,32 @@
                     <h4 style="color:white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Top 10 - Most wanted games</h4>
                 </div>
                 <div class="list-group list-group-item-action text-left" id="myList" role="tablist">
-                    <a href="#" class="list-group-item bg-secondary"><h4>1. Cyberpunk 2077</h4>Action, RPG | 2020</a>
-                    <a href="#" class="list-group-item bg-secondary"><h4>2. Grand Theft Auto V</h4>Action, RPG, Shooter | 2015</a>
-                    <a href="#" class="list-group-item bg-secondary"><h4>3. Wither 3</h4>RPG, Dark Fantasy | 2016</a>
-                    <a href="#" class="list-group-item bg-secondary">4. ...</a>
-                    <a href="#" class="list-group-item bg-secondary">5. ...</a>
-                    <a href="#" class="list-group-item bg-secondary">6. ...</a>
-                    <a href="#" class="list-group-item bg-secondary">7. ...</a>
-                    <a href="#" class="list-group-item bg-secondary">8. ...</a>
-                    <a href="#" class="list-group-item bg-secondary">9. ...</a>
-                    <a href="#" class="list-group-item bg-secondary">10. ...</a>
+                    <form method="post">
+                        @*@if (Model.Interestinggames.Any())
+        {
+            <a href="#" class="list-group-item bg-secondary">
+                @foreach (var game in Model.Interestinggames) {
+        <h4>@Html.DisplayFor(i => game.Title)</h4>
+        @foreach (var genre in Model.Genres){
+        @Html.DisplayFor() | 2020
+                                   }
+        }
+                        </a>
+                        }
+                        else
+                        {*@
+                        <a href="#" class="list-group-item bg-secondary"><h4>1. Cyberpunk 2077</h4>Action, RPG | 2020</a>
+                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                        
+                    </form>
                 </div>
             </div>
         </div>
