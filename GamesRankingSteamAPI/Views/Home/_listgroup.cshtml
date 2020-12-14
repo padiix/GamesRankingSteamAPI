@@ -1,5 +1,5 @@
 ﻿@page
-@model GamesRankingSteamAPI.Views.Home._listgroupModel
+@*@model GamesRankingSteamAPI.Views.Home._listgroupModel*@
 @{
 }
 <style>
@@ -9,7 +9,6 @@
     }
 </style>
 
-
 <div class="container-fluid">
     <div class="col-sm-7 col-lg-3 mx-auto">
         <div class="card card-signin bg-dark mt-5 pt-1 mx-auto">
@@ -18,34 +17,22 @@
                     <h4 style="color:white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Top 10 - Most wanted games</h4>
                 </div>
                 <div class="list-group list-group-item-action text-left" id="myList" role="tablist">
-                    <form method="post">
-                        @*@if (Model.Interestinggames.Any())
-        {
-            <a href="#" class="list-group-item bg-secondary">
-                @foreach (var game in Model.Interestinggames) {
-        <h4>@Html.DisplayFor(i => game.Title)</h4>
-        @foreach (var genre in Model.Genres){
-        @Html.DisplayFor() | 2020
-                                   }
-        }
-                        </a>
-                        }
-                        else
-                        {*@
-                        <a href="#" class="list-group-item bg-secondary"><h4>1. Cyberpunk 2077</h4>Action, RPG | 2020</a>
-                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
-                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
-                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
-                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
-                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
-                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
-                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
-                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
-                        <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
-                        
-                    </form>
+                    <a href="#" class="list-group-item bg-secondary"><h4>1. Cyberpunk 2077</h4>Action, RPG | 2020</a>
+                    <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                    <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                    <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                    <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                    <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                    <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                    <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                    <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
+                    <a href="#" class="list-group-item bg-secondary"><h4>Placeholder</h4>Placeholder</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts{ 
+<script src="~/js/FetchInteresing.js"></script>
+}

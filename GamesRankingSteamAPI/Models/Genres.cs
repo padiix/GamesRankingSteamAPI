@@ -1,5 +1,7 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace GamesRankingSteamAPI.Models
 {
@@ -12,7 +14,8 @@ namespace GamesRankingSteamAPI.Models
 
         public long? GenreId { get; set; }
         public string Name { get; set; }
-
+        
+        [JsonIgnore]
         public virtual ICollection<Top15interestinggamesHasGenres> Top15interestinggamesHG { get; set; }
     }
 }
