@@ -18,22 +18,9 @@ namespace GamesRankingSteamAPI.Views.Home
             _db = db;
         }
 
-        public IEnumerable<Top15interestinggames> Interestinggames { get; set; }
-        public IEnumerable<Genres> Genres { get; set; }
-
-        public IEnumerable<Top15interestinggamesHasGenres> InterestinggamesHasGenres { get; set; }
-
         public async Task OnGet()
         {
-            Interestinggames = await _db.Top15interestinggames.ToListAsync();
-            Genres = await _db.Genres.ToListAsync();
-            InterestinggamesHasGenres = await _db.Top15interestinggamesHasGenres.ToListAsync();
-
-            foreach (var item in Interestinggames) {
-                //var GamesWithGenres = _db.Top15interestinggames.Include(gam => gam.Top15interestinggamesHG).ThenInclude(gen => gen.GenresGenre).First(gam => gam.GameId == item.GameId);
-                //var GenresToGame = GamesWithGenres.Top15interestinggamesHG.Select(row => row.GenresGenre);
-                var GenresToGame = await _db.Genres.Where(genre => genre.Top15interestinggamesHG.Any(j => j.Top15interestinggamesGameId == item.GameId)).ToListAsync();
-            }
+            return;
         }
     }
 }

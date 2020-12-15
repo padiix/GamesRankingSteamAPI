@@ -9,7 +9,7 @@ using GamesRankingSteamAPI.Models;
 
 namespace GamesRankingSteamAPI.Controllers
 {
-    [Route("api/IntGam")]
+    [Route("api/IntGam.json")]
     [ApiController]
 
     public class T15IGController : Controller
@@ -25,16 +25,6 @@ namespace GamesRankingSteamAPI.Controllers
             List<Top15interestinggamesHasGenres> TIGHGenres = await db.Top15interestinggamesHasGenres.ToListAsync();
             List<Genres> Genres = await db.Genres.ToListAsync();
 
-            //var gamesRecord = from e in TIGames
-            //                  join d in TIGHGenres on e.GameId equals d.Top15interestinggamesGameId into table1
-            //                  from d in table1.ToList()
-            //                  join i in Genres on d.GenresGenreId equals i.GenreId into table2
-            //                  from i in table2.ToList()
-            //                  select new ViewModel
-            //                  {
-            //                      topinterestinggames = e,
-            //                      genres = i
-            //                  };
             return Json(new { data = TIGames });
         }
     }

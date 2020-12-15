@@ -9,7 +9,7 @@ using GamesRankingSteamAPI.Models;
 
 namespace GamesRankingSteamAPI.Controllers
 {
-    [Route("api/PopGam")]
+    [Route("api/PopGam.json")]
     [ApiController]
     public class TopPopularGamesController : Controller
     {
