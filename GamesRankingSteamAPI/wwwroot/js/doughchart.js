@@ -1,15 +1,27 @@
-﻿var ctx = document.getElementById('myChart');
-var myChart;
+﻿$(function () {
+
+var ctx = document.getElementById('myChart');
+let myChart;
+
+let chartLabels = [];
+let chartData = [];
+
+
+    $.getJSON('/api/PopGam.json', function (jd) {
+        var data = jd.data;
+        $.each(data, function (index, data) {
+            chartLabels.push(data.title);
+            var ratingTwoDecimalPlaces = parseFloat(data.rating).toFixed(2);
+            chartData.push(ratingTwoDecimalPlaces);
+        });
+        myChart = new Chart(ctx, config);
+    });
+
 
 var dataset = {
-    labels: [
-        "Gra1", "Gra2", "Gra3", "Gra4", "Gra5", "Gra6", "Gra7", "Gra8", "Gra9", "Gra10"
-    ],
+    labels: chartLabels,
     datasets: [{
-        label: "liczba grających osób",
-        data: [
-            10, 20, 30, 40, 50, 60, 70, 80, 90, 100
-        ],
+        data: chartData,
         backgroundColor: [
             pattern.draw('square', '#1f77b4'),
             pattern.draw('circle', '#ff7f0e'),
@@ -25,6 +37,7 @@ var dataset = {
         borderColor: '#343a40'
     }]
 };
+
 
 var config = {
     type: 'doughnut',
@@ -59,5 +72,4 @@ var config = {
         }
     }
 }
-
-myChart = new Chart(ctx, config);
+});
