@@ -13,17 +13,15 @@ namespace GamesRankingSteamAPI.Controllers
     [ApiController]
     public class TopPopularGamesController : Controller
     {
-        private readonly gamesrankdbContext _context;
 
-        public TopPopularGamesController(gamesrankdbContext context)
-        {
-            _context = context;
-        }
+        public TopPopularGamesController()
+        {}
 
         // GET: TopPopularGames
         public async Task<IActionResult> GetAll()
         {
-            return Json(new { data = await _context.Top10populargames.ToListAsync() });
+            using gamesrankdbContext db = new gamesrankdbContext();
+            return Json(new { data = await db.Top10populargames.ToListAsync() });
         }
     }
 }
