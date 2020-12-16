@@ -1,47 +1,41 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Games Rank</title>
+    <meta name="description" content="Site with graphical game ranking by popularity." />
+    <meta name="keywords" content="Games Rank" />
+    <meta name="author" content="Bartosz Leżyński" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/navbar.css?v=1.1" />
+    <link rel="stylesheet" type="text/css" href="~/css/overlay.css?v=1.1" />
+    <script src="https://kit.fontawesome.com/298363b29f.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/patternomaly/1.3.2/patternomaly.js" integrity="sha512-gNM40ajr/bSi3Af8i6D4dV2CUWZrkm2zhgeWf46H91zOwWoH8Wwsyf6kQ4syfNyOrnjATrjKkP4ybWD7eKp2KA==" crossorigin="anonymous"></script>
+    @RenderSection("Styles", false);
 </head>
-<body style="background-color:#364859">
+
+<body id="pageBody" class="page-holder bg-image" onresize="document.location.reload(true)">
     <header>
-        <partial name="_navbar"/>
-        <!--<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Games Rank</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-            -->
+        <partial name="_navbar" />
     </header>
-    <div class="container">
-        <main role="main" class="pb-4">
+    <div class="container-fluid pt-2">
+        <main role="main" class="pt-5 pb-4">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer bg-dark text-muted">
-        <div class="container">
-            <span style="color: #FFFFFF80">&copy; 2020 - Games Rank</span><!--<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>-->
+    <footer class="page-footer font-small text-white">
+        <div class="footer text-center py-3" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">
+            © 2020 - Games Rank
         </div>
     </footer>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

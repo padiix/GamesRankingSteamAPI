@@ -1,8 +1,39 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<link rel="stylesheet" href="~/css/fonts.css" />
+
+<head>
+    <link rel="stylesheet" href="~/css/pagestyles.css?v=1.2" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2/dist/Chart.min.js"></script>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+    </script>
+</head>
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="col-sm-7 col-md-7 mx-auto card-signin bg-dark">
+        <div class="card-body">
+            <div class="card-header bg-info justify-content-center">
+                <h4 style="color:white; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Top 10 - Most popular games</h4>
+            </div>
+        </div>
+        <div class="mx-auto" style="position: relative;">
+            <canvas id="myChart" class="canvas"></canvas>
+        </div>
+        <div class="pl-2 pr-2 pb-2">
+            <span class="text-muted" style="color:white">Collecting data of the most popular games by their playing user count is happening at 3PM each Saturday.</span>
+        </div>
+    </div>
+    <div class="col-sm-6 mx-auto mt-5 pt-3">
+        <div class="input-group mb-3">
+            <input id="searchInput" type="text" class="form-control bg-dark" style="color: white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" placeholder="Search for a game..." aria-label="Game searcher using igdb.com site">
+            <div class="input-group-append">
+                <span id="magnifierHolder" onclick="redirect()" class="input-group-text bg-info"><a id="magnifier" class="fa fa-search" style="color:white;"></a></span>
+            </div>
+        </div>
+    </div>
+    <partial name="_listgroup" />
 </div>
+
+<script src="~/js/doughchart.js?v=1.1"></script>
+<script src="~/js/SearchIGDB.js"></script>

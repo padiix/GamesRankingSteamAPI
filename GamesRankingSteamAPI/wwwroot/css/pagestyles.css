@@ -1,0 +1,35 @@
+﻿.card-signin {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+    .card-signin .card-title {
+        font-size: 1.5rem;
+        font-weight: 300;
+        margin-bottom: 2rem;
+    }
+
+.card-text {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin: 0;
+}
+
+.card-signin .card-body {
+    padding: 2rem;
+}
+
+@media screen and (min-width: 991.99px) {
+    .card-signin .canvas {
+        width: 1063px;
+        height: 600px;
+    }
+}
+
+@media screen and (max-width: 991.98px) {
+    .card-signin .canvas {
+        width: 800px;
+        height: 1200px;
+    }
+}

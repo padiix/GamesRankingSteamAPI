@@ -1,26 +1,21 @@
 ﻿<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-        <span class="navbar-brand" href="#">
-                <span class="nav-item active">
-                    <a style="color:white" class="nav-link" asp-action="Index">
-                        Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </span>
-        </span>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" asp-action="About">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-action="Privacy">Privacy</a>
-                </li>
-            </ul>
+<header class="header">
+    <nav class="navbar navbar-expand-lg py-3 active">
+        <div class="navbar container">
+            <h1 class="navbar-brand text-uppercase font-weight-bold" style="color:#FFF ;text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; font-size:x-large;">Games Rank</h1>
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a class="nav-link text-uppercase font-weight-bold" asp-action="Index" style="color: #dddddd; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Home <span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a class="nav-link text-uppercase font-weight-bold" asp-action="About" style="color: #dddddd; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-uppercase font-weight-bold" asp-action="Privacy" style="color: #dddddd; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Privacy</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</header>
+
+@section Scripts{
+    <script src="~/js/navbar.js"></script>
+}

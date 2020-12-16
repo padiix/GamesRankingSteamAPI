@@ -2,11 +2,48 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "About us";
+    ViewData["Title"] = "About website";
 }
-<link rel="stylesheet" href="~/css/fonts.css" />
-<div>
-    <h1>@ViewData["Title"]</h1>
 
-    <p>Use this site to tell user about yourself and your site.</p>
+@section Styles{
+    <link rel="stylesheet" href="~/css/pagefonts.css" />
+}
+
+<div class="container">
+    <div class="card card-signin bg-dark">
+        <div class="card-body">
+            <h1 class="card-title">@ViewData["Title"]</h1>
+
+            <p>This website is a credit project made for Internet Technologies classes in 2020.</p>
+            <p>Made by Bartosz Leżyński.</p>
+            <br />
+            <hr />
+            <p>Things used in this project:</p>
+            <ul>
+                <li>NuGeT packages:</li>
+                <ul>
+                    <li><b><a href="https://github.com/kamranayub/igdb-dotnet">IGDBApi (C#/.NET)</a></b> made by <i>kamranayub</i>,</li>
+                    <li><b><a href="https://entityframeworkcore.com">Entity Framework Core</a></b>,</li>
+                    <li><b><a href="https://www.nuget.org/packages/MySql.Data.EntityFramework">MySQL Data for Entity Framework</a></b>.</li>
+                </ul>
+                <li>Libraries:</li>
+                <ul>
+                    <li><b><a href="https://getbootstrap.com">Bootstrap 4</a></b>,</li>
+                    <li><b><a href="https://jquery.com">jQuery</a></b>,</li>
+                    <li><b><a href="https://www.chartjs.org">Chart.js</a></b>,</li>
+                    <li><b><a href="https://github.com/ashiguruma/patternomaly">Patternormaly</a></b>,</li>
+                    <li><b><a href="https://fontawesome.com">FontAwesome</a></b>,</li>
+                </ul>
+            </ul>
+
+            <p>Font used on site: <b><i>Roboto Light</i></b></p>
+            <p>Image used in overlay created by: <br /> <a href='https://www.freepik.com/vectors/logo'>www.freepik.com</a></p>
+            <br />
+            <hr />
+
+            <h4>All data in the database was provided by the kindness of the <a href="https://www.igdb.com">IGDB website</a> and it's owners.</h4>
+            <p>Give their site a look!</p>
+
+        </div>
+    </div>
 </div>
