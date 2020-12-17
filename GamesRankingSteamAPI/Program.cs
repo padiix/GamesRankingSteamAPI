@@ -21,7 +21,7 @@ namespace GamesRankingSteamAPI
                 IGDBAPI.GetDataAndSendToDatabase(); 
             });
             preparedb.Wait();
-            Console.WriteLine("Preparing database: " + preparedb.Status);
+            Console.WriteLine("<*<>*>Preparing database: " + preparedb.Status);
             CreateHostBuilder(args).Build().Run();
         }
 

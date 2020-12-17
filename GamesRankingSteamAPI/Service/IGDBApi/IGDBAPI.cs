@@ -93,11 +93,10 @@ namespace GamesRankingSteamAPI.Service
                             throw;
                         }
 
-                        var top10PopularGames = await igdb.QueryAsync<Game>(IGDBClient.Endpoints.Games,
-                        query: "fields id, rating, rating_count, name;" +
+                        var top10PopularGames = await igdb.QueryAsync<Game>(IGDBClient.Endpoints.Games, query: "fields id, rating, rating_count, name;" +
                         " sort rating_count desc;" +
                         " where(rating > 60) & (rating_count > 8) & (hypes != null) & (category = 0) & (first_release_date >= " + unixFirst + ") & (first_release_date < " + unixCurr + ");" +
-                        " limit 10; ");
+                        " limit 10;");
 
                         foreach (Game game in top10PopularGames)    //Checking every thing in the top10 popular games object from IGDB API Package.
                         {
@@ -205,9 +204,11 @@ namespace GamesRankingSteamAPI.Service
                     {
                         try
                         {
-                            dbcontextinteresting.Database.ExecuteSqlRaw("TRUNCATE TABLE `gamesrankdb`.`top15interestinggames_has_genres`;"); // Working deletion of all data inside table.
-                            dbcontextinteresting.Database.ExecuteSqlRaw("TRUNCATE TABLE `gamesrankdb`.`top15interestinggames`;");
-                            dbcontextinteresting.Database.ExecuteSqlRaw("TRUNCATE TABLE `gamesrankdb`.`genres`;");
+                            dbcontextinteresting.Database.ExecuteSqlRaw("DELETE FROM top15interestinggames_has_genres;"); // Working deletion of all data inside table.
+                            await dbcontextinteresting.SaveChangesAsync();
+                            dbcontextinteresting.Database.ExecuteSqlRaw("DELETE FROM top15interestinggames;");
+                            await dbcontextinteresting.SaveChangesAsync();
+                            dbcontextinteresting.Database.ExecuteSqlRaw("DELETE FROM genres;");
                             await dbcontextinteresting.SaveChangesAsync();
                         }
                         catch (DbUpdateConcurrencyException)
