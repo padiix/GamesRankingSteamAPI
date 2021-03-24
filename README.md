@@ -1,2 +1,2 @@
 # GamesRankingWebApp
-Webapp using IGDB API to create ranking of most popular games in current month.
+Web application using [IGDB API](https://github.com/kamranayub/igdb-dotnet) to create interactable graph of most popular games and list of most interesting games using jQuery.
